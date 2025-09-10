@@ -1,0 +1,44 @@
+---
+name: ruff
+
+run-name: Ruff
+
+on:
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "**/*.py"
+      - "**/*.ipynb"
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  skip_duplicate_actions:
+    name: Skip Duplicate Actions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fkirc/skip-duplicate-actions@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          cancel_others: true
+          concurrent_skipping: never
+
+  shellcheck:
+    name: Ruff
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Call Dagger Function
+        uses: dagger/dagger-for-github@v8.1.0
+        with:
+          args: check-with-config --source=. --file=.ruff.toml stderr
+          module: github.com/softwaredevelop/daggerverse/ruff@main
+          verb: call
+          version: "latest"
