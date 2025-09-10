@@ -1,0 +1,7 @@
+{
+    "python.defaultInterpreterPath": "$home\\miniconda3\\envs\\strategy-optimizer_env\\python.exe",
+    "python.terminal.activateEnvironment": true,
+    "files.exclude": {
+        "**/config.ini": true
+    }
+}
