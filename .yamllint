@@ -1,0 +1,14 @@
+extends: default
+
+ignore: |
+    Pulumi.*.yaml
+
+rules:
+    document-start:
+        ignore: |
+            Pulumi.yaml
+    line-length:
+        ignore: |
+            Pulumi.yaml
+    truthy:
+        check-keys: false
