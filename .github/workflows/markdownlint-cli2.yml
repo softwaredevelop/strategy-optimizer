@@ -1,0 +1,41 @@
+---
+name: markdownlint-cli2
+
+run-name: Markdownlint-cli2
+
+on:
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "**/*.md"
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  skip_duplicate_actions:
+    name: Skip Duplicate Actions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fkirc/skip-duplicate-actions@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          cancel_others: true
+          concurrent_skipping: never
+
+  markdownlint-cli2:
+    name: Markdownlint-cli2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Call markdownlint-cli2
+        uses: DavidAnson/markdownlint-cli2-action@v20
+        with:
+          config: ".markdownlint-cli2.yaml"
+          globs: "**/*.md"
