@@ -1,0 +1,15 @@
+---
+name: strategy-optimizer_env_vbt
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - ipykernel
+  - nbformat
+  - pandas-ta
+  - plotly
+  - python=3.12
+  - sqlite=3.50.2
+  - ta-lib
+  - vectorbt
+  - yfinance
