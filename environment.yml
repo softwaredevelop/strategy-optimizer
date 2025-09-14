@@ -1,0 +1,25 @@
+---
+name: strategy-optimizer_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - fastparquet
+  - ipykernel
+  - matplotlib
+  - nbformat
+  - numpy
+  - pandas
+  - pandas-ta
+  - pip
+  - pyarrow
+  - python=3.12
+  - seaborn
+  - setuptools<81
+  - sqlite=3.50.2
+  - ta-lib
+  - vectorbt
+  - yfinance
+  - pip:
+      - backtesting
+      - tulipy
