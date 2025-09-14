@@ -5,6 +5,7 @@ channels:
   - defaults
 dependencies:
   - ipykernel
+  - matplotlib
   - nbformat
   - numpy
   - pandas-ta
